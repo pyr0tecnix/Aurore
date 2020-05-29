@@ -46,5 +46,24 @@ case $1 in
         esac
         exit 0
     ;;
+    app)
+        case $2 in
+            init)
+                docker-compose -f docker-compose.dev.yml exec server /bin/bash -c "cd src && pypy3 manage.py makemigrations"
+                docker-compose -f docker-compose.dev.yml exec server /bin/bash -c "cd src && pypy3 manage.py migrate"
+                docker-compose -f docker-compose.dev.yml exec server /bin/bash -c "cd src && pypy3 manage.py createsuperuser"
+            ;;
+            migrate)
+                docker-compose -f docker-compose.dev.yml exec server /bin/bash -c "cd src && pypy3 manage.py makemigrations"
+                docker-compose -f docker-compose.dev.yml exec server /bin/bash -c "cd src && pypy3 manage.py migrate"
+            ;;         
+            static)
+                docker-compose -f docker-compose.dev.yml exec server /bin/bash -c "cd src && pypy3 manage.py collectstatic"
+            ;;
+            manage)
+                docker-compose -f docker-compose.dev.yml exec server /bin/bash -c "cd src && pypy3 manage.py ${3}"
+            ;;
+        esac
+        exit 0
     esac
     
