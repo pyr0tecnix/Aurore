@@ -5,16 +5,21 @@ from rest_framework import serializers, viewsets
 from . import models
 
 
-class AlarmSerializer(serializers.Serializer):
-    name = serializers.CharField()
+class AlarmSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.Alarm
+        fields = '__all__'
+
 
 class Alarms(viewsets.ModelViewSet):
     serializer_class = AlarmSerializer
     queryset = models.Alarm.objects.all()
 
 
-class ColorSerializer(serializers.Serializer):
-    color = serializers.CharField()
+class ColorSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.Color
+        fields = '__all__'
 
 class Colors(viewsets.ModelViewSet):
     serializer_class = ColorSerializer
