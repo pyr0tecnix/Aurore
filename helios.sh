@@ -63,6 +63,9 @@ case $1 in
             manage)
                 docker-compose -f docker-compose.dev.yml exec server /bin/bash -c "cd src && pypy3 manage.py ${3}"
             ;;
+            runtest)
+                docker-compose -f docker-compose.dev.yml exec server /bin/bash -c "cd src && pypy3 -Wa manage.py test"
+            ;;
         esac
         exit 0
     esac

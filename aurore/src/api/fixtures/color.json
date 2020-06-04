@@ -1,0 +1,16 @@
+[
+    {
+        "model": "api.color",
+        "pk": 1,
+        "fields": {
+          "color": "#123FFF"
+        }
+      },
+      {
+        "model": "api.color",
+        "pk": 2,
+        "fields": {
+          "color": "#AA00FF"
+        }
+      }
+]

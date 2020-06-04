@@ -15,7 +15,6 @@ class Alarms(viewsets.ModelViewSet):
     serializer_class = AlarmSerializer
     queryset = models.Alarm.objects.all()
 
-
 class ColorSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Color
