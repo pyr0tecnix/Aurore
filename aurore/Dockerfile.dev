@@ -3,11 +3,12 @@ FROM pypy:3-7
 WORKDIR /usr/src/aurore/
 
 COPY requirements.txt ./
+RUN pip install --upgrade pip
 RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 COPY supervisor/supervisord-dev.conf /etc/supervisor/conf.d/supervisord.conf
 
-RUN apt-get update \
+RUN apt-get update --allow-releaseinfo-change \
   && apt-get install python3-dev -y \
   && apt-get install vim-nox -y \
   && apt-get install locales -y \

@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'huey.contrib.djhuey',
     'api.apps.ApiConfig'
 ]
 
@@ -83,7 +84,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'aurore.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
@@ -94,6 +94,11 @@ DATABASES = {
     }
 }
 
+HUEY = {
+    'name': 'aurore-queue',
+    'url': getenv('REDIS_URL'),
+    'always_eager': False
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators

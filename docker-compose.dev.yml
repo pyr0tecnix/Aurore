@@ -15,6 +15,15 @@ services:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf
       - ./aurore/src/static:/usr/share/nginx/html/static:ro
 
+  redis:
+    image: redis:6
+    volumes:
+      - ./redis:/data
+    expose:
+      - '6379'
+    ports:
+      - '6379:6379'
+
   server:
     environment:
       - HOST=${BDG_SERVER_HOSTNAME}
@@ -22,12 +31,14 @@ services:
       - SECRET_KEY=${BDG_SECRET_KEY}
       - SERVER_DEBUG=${BDG_SERVER_DEBUG}
       - SV_PWD=${BDG_SV_PWD}
+      - REDIS_URL=${BDG_REDIS_URL}
     build:
       context: ./aurore
       dockerfile: Dockerfile.dev
+    depends_on: 
+      - redis
     volumes:
       - ./aurore:/usr/src/aurore
-
 
 networks:
   default:

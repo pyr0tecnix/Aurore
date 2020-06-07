@@ -3,6 +3,9 @@
 case $1 in
     docker)
         case $2 in
+            up)
+                docker-compose -f docker-compose.dev.yml up -d
+            ;;
             start)
                 docker-compose -f docker-compose.dev.yml start
             ;;
@@ -32,6 +35,9 @@ case $1 in
             nginx)
                 docker-compose -f docker-compose.dev.yml logs -f nginx
             ;;
+            redis)
+                docker-compose -f docker-compose.dev.yml logs -f redis
+            ;;
         esac
         exit 0
     ;;
@@ -42,6 +48,9 @@ case $1 in
             ;;
             nginx)
                 docker-compose -f docker-compose.dev.yml exec nginx /bin/bash
+            ;;
+            redis)
+                docker-compose -f docker-compose.dev.yml exec redis /bin/bash
             ;;
         esac
         exit 0
