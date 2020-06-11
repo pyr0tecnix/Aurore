@@ -34,6 +34,8 @@ aurore/src/static/
 aurore/src/asset/
 
 # Test
-
 aurore/src/.coverage
 aurore/src/htmlcov
+
+# Huey queue
+redis
