@@ -1,5 +1,4 @@
 import time
-from uuid import uuid4
 from django.conf import settings
 
 from huey import crontab
@@ -22,3 +21,6 @@ def schedule_alarm(alarm_name, cron_minutes, cron_hours, cron_days):
     schedule = crontab(minute = cron_minutes, hour = cron_hours, day_of_week = cron_days)
 
     periodic_task(schedule, name=alarm_name)(wrapper)
+
+
+# def activate(task_id):
