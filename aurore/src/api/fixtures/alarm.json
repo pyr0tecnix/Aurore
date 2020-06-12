@@ -1,0 +1,24 @@
+[
+    {
+        "model": "api.alarm",
+        "pk": 1,
+        "fields": {
+          "name": "Work",
+          "hour": "07:05:00",
+          "duration": 5,
+          "days": "1,2,3,4,5",
+          "status": false
+        }
+      },
+      {
+        "model": "api.alarm",
+        "pk": 2,
+        "fields": {
+          "name": "week-end",
+          "hour": "09:31:02",
+          "duration": 10,
+          "days": "6,7",
+          "status": true
+        }
+      }
+]
