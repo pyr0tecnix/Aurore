@@ -3,7 +3,7 @@ from django.dispatch import receiver
 
 
 from api.models import Alarm
-from api.tasks import schedule_alarm
+from api.tasks import schedule_alarm, activate, deactivate
 
 # Signals
 
@@ -11,17 +11,21 @@ from api.tasks import schedule_alarm
 def alarmSaveCallback(sender, **kwargs):
 
     alarm = kwargs['instance']
-    print(alarm)
 
     if alarm.pk is None :
-        print(alarm.hour)
+        # Create
         task = schedule_alarm(alarm.name, alarm.hour.minute, alarm.hour.hour, alarm.days)
         alarm.task_id = task.id
     else:
-        print("Update")
+        # Update
+        if alarm.status:
+            activate(alarm.task_id)
+        else:
+            deactivate(alarm.task_id)
 
 
 @receiver(pre_delete, sender=Alarm)
-def alarmDeleteCallback(sender, instance, **kwargs):
-    print("Delete")
+def alarmDeleteCallback(sender, **kwargs):
+    alarm = kwargs['instance']
+    deactivate(alarm.task_id)
 

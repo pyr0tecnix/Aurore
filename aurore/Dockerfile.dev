@@ -1,5 +1,7 @@
 FROM pypy:3-7
 
+ENV PYTHONUNBUFFERED=1
+
 WORKDIR /usr/src/aurore/
 
 COPY requirements.txt ./

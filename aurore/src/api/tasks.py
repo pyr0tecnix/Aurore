@@ -2,7 +2,7 @@ import time
 from django.conf import settings
 
 from huey import crontab
-from huey.contrib.djhuey import task, periodic_task
+from huey.contrib.djhuey import task, periodic_task, revoke_by_id, restore_by_id
 
 def tprint(s, c=42):
     # Helper to print messages from within tasks using color, to make them
@@ -23,4 +23,8 @@ def schedule_alarm(alarm_name, cron_minutes, cron_hours, cron_days):
     periodic_task(schedule, name=alarm_name)(wrapper)
 
 
-# def activate(task_id):
+def activate(task_id):
+    restore_by_id(task_id)
+
+def deactivate(task_id):
+    revoke_by_id(task_id)

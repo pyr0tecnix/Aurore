@@ -9,7 +9,7 @@ class Alarm(models.Model):
     duration = models.PositiveSmallIntegerField(validators=[MaxValueValidator(20), MinValueValidator(1)])
     days = models.CharField(max_length=20)
     status = models.BooleanField()
-    task_id = models.UUIDField(unique=True, default=uuid1())
+    task_id = models.UUIDField(unique=True, default=uuid1)
 
     def __str__(self):
         return '%s : %s on days %s' % (self.name, self.hour, self.days)
