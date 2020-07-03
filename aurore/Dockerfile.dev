@@ -5,6 +5,7 @@ ENV PYTHONUNBUFFERED=1
 WORKDIR /usr/src/aurore/
 
 COPY requirements.txt ./
+COPY run.sh ./
 RUN pip install --upgrade pip
 RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
@@ -29,4 +30,4 @@ EXPOSE 8000
 
 USER ludock
 
-ENTRYPOINT ["supervisord"]
+CMD "./run.sh"

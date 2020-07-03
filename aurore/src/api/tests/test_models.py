@@ -8,24 +8,24 @@ class AlarmCreateTest(TestCase):
     """ Test Alarm Model """
 
     def setUp(self):
-        self.alarm = Alarm.objects.create(name = 'Test', hour = datetime.now().time(), duration = 1, days = '1,2,3', status = True)
+        self.alarm = Alarm.objects.create(name = 'Test Model', hour = datetime.now().time(), duration = 1, days = '1,2,3', status = True)
 
     def test_alarm_get(self):
-        alarm = Alarm.objects.get(name='Test')
+        alarm = Alarm.objects.get(name='Test Model')
         self.assertEqual(str(alarm), str(self.alarm))
 
     def test_alarm_update(self):
-        alarm = Alarm.objects.get(name='Test')
+        alarm = Alarm.objects.get(name='Test Model')
         alarm.name = 'Updated'
         alarm.save()
 
         alarmUpdated = Alarm.objects.get(name = 'Updated')
-        print(alarmUpdated)
+
         self.assertEqual(str(alarm), str(alarmUpdated))
 
     def test_alarm_delete(self):
-        Alarm.objects.get(name = 'Test').delete()
-        self.assertRaises(ObjectDoesNotExist, Alarm.objects.get, name = 'Test')
+        Alarm.objects.get(name = 'Test Model').delete()
+        self.assertRaises(ObjectDoesNotExist, Alarm.objects.get, name = 'Test Model')
 
 class ColorTest(TestCase):
     """ Test Color Model """
@@ -43,7 +43,7 @@ class ColorTest(TestCase):
         color.save()
 
         colorUpdated = Color.objects.get(color = '#00FF00')
-        print(colorUpdated)
+
         self.assertEqual(str(color), str(colorUpdated))
 
     def test_color_delete(self):

@@ -97,7 +97,7 @@ DATABASES = {
 HUEY = {
     'name': 'aurore-queue',
     'url': getenv('REDIS_URL'),
-    'always_eager': False
+    'immediate': False
 }
 
 # Password validation
