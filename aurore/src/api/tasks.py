@@ -1,8 +1,8 @@
 import time
 from django.conf import settings
 
-from huey import crontab
-from huey.contrib.djhuey import task, periodic_task, revoke_by_id, restore_by_id
+from huey import crontab, signals
+from huey.contrib.djhuey import task, periodic_task, revoke_by_id, restore_by_id, signal
 
 def tprint(s, c=42):
     # Helper to print messages from within tasks using color, to make them
