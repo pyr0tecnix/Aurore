@@ -3,3 +3,5 @@ Django==3.0.5
 djangorestframework==3.10.3
 huey==2.2.0
 django-redis==4.12.1
+
+gpiozero==1.5.1

@@ -3,7 +3,7 @@ from django.dispatch import receiver
 from uuid import uuid4
 
 
-from api.models import Alarm
+from api.models import Alarm, Color, Running
 from api.tasks import schedule_alarm, activate, deactivate
 
 # Signals
@@ -28,3 +28,13 @@ def alarmDeleteCallback(sender, **kwargs):
     alarm = kwargs['instance']
     deactivate(alarm.task_id)
 
+
+@receiver(pre_save, sender=Color)
+def setDefaultColor(sender, **kwargs):
+    color = kwargs['instance']
+    if color.default == True :
+        Color.objects.all().update(default=False)
+
+@receiver(pre_save, sender=Running)
+def setRunning(sender, **kwargs):
+    Running.objects.all().delete()
