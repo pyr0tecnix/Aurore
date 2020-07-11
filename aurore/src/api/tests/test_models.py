@@ -1,7 +1,7 @@
 from datetime import datetime
 from django.test import TestCase
 from django.core.exceptions import ObjectDoesNotExist
-from api.models import *
+from api.models import Alarm, Color
 
 
 class AlarmCreateTest(TestCase):
