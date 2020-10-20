@@ -34,7 +34,8 @@ DEBUG = getenv('SERVER_DEBUG')
 
 ALLOWED_HOSTS = [
     getenv('HOST'),
-    getenv('PUBLIC_HOST')
+    getenv('PUBLIC_HOST'),
+    'localhost'
 ]
 
 

@@ -1,14 +1,22 @@
 from django.core.management.base import BaseCommand
 from api.models import *
-
-
-# from gpiozero import LED, Button
 from django.core.exceptions import ObjectDoesNotExist
+from api.scripts import drive_white_led
+
+#Only for testing purpose
+from gpiozero.pins.mock import MockFactory
+
+from gpiozero import Device, LED, Button
 
 
 class Command(BaseCommand):
     help = 'Handle I/O'
+    # Set the default pin factory to a mock factory
+    Device.pin_factory = MockFactory()
 
+    led = LED(17)
+
+    drive_white_led(17)
     def dispatch(self, running):
         print(running.content_type)
         if running is None:

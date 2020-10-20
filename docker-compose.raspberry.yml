@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+  redis:
+    image: redis:6
+    volumes:
+      - ./redis:/data
+    expose:
+      - '6379'
+    ports:
+      - '6379:6379'
+
+  server:
+    environment:
+      - HOST=${BDG_SERVER_HOSTNAME}
+      - PUBLIC_HOST=${BDG_PUBLIC_HOST}
+      - SECRET_KEY=${BDG_SECRET_KEY}
+      - SERVER_DEBUG=${BDG_SERVER_DEBUG}
+      - SV_PWD=${BDG_SV_PWD}
+      - REDIS_URL=${BDG_REDIS_URL}
+    build:
+      context: ./aurore
+      dockerfile: Dockerfile.raspberry
+    depends_on: 
+      - redis
+    volumes:
+      - ./aurore:/usr/src/aurore
+    ports:
+    - '8000:8000'
